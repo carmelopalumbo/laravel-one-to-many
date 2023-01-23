@@ -16,6 +16,11 @@
                 href="{{ route('admin.projects.ordertypes') }}">LINGUAGGI</a>
         </p>
 
+        <p class="mb-5">
+            <a class="{{ Route::currentRouteName() === 'admin.types.index' ? 'active' : 'notactive' }}"
+                href="{{ route('admin.types.index') }}">GESTIONE</a>
+        </p>
+
         <p>
             <a class="notactive" target="_blank" href="https://github.com/carmelopalumbo">GITHUB</a>
         </p>
