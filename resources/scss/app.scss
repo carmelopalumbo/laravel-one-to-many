@@ -9,7 +9,7 @@ header{
 }
 
 .option-box{
-    height: calc(100vh - 68px);
+    height: 100vh;
 }
 
 aside{
@@ -193,7 +193,11 @@ form{
     }
 }
 
+h5{
+    -webkit-text-stroke: 1px #C52133;
+}
+
 .ck-editor__editable[role="textbox"] {
     /* editing area */
-    height: 140px;
+    height: 100px;
 }

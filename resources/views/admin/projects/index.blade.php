@@ -29,7 +29,7 @@
                         @forelse ($my_projects as $project)
                             <tr>
                                 <td>{{ $project->name }} <span
-                                        class="badge text-bg-dark ms-2">{{ $project->type->name }}</span>
+                                        class="badge text-bg-dark ms-2">{{ $project->type?->name }}</span>
                                 </td>
                                 <td>{{ $project->client_name }}</td>
                                 <td>

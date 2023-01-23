@@ -6,7 +6,7 @@
             @include('admin.partials.aside')
 
             <div class="col-10">
-                <h2 class="text-center pt-5 pb-3 fw-bold">MODIFICA PROGETTO</h2>
+                <h5 class="text-center pt-4 pb-3 fw-bold">MODIFICA PROGETTO</h5>
                 <form class="w-75 m-auto" action="{{ route('admin.projects.update', $project) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
@@ -33,6 +33,17 @@
                                 {{ $message }}
                             </p>
                         @enderror
+                    </div>
+
+                    <div class="pb-3">
+                        <label for="type" class="form-label">LINGUAGGIO</label>
+                        <select id="type" name='type_id' class="form-select" aria-label="Default select example">
+                            <option value="">Seleziona un linguaggio o framework . . .</option>
+                            @foreach ($types as $type)
+                                <option @if ($type->id == old('type_id', $project->type?->id)) selected @endif value="{{ $type->id }}">
+                                    {{ $type->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="d-flex justify-content-between">

@@ -5,10 +5,12 @@
         <div class="row">
             @include('admin.partials.aside')
             <div class="col-10">
-                <h2 class="text-center pt-5 pb-3 fw-bold">AGGIUNGI NUOVO PROGETTO</h2>
+                <h5 class="text-center pt-4 pb-3 fw-bold">AGGIUNGI NUOVO PROGETTO</h5>
+
                 <form class="w-75 m-auto" action="{{ route('admin.projects.store') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
+
                     <div class="mb-3">
                         <label for="name" class="form-label">NOME PROGETTO</label>
                         <input type="text" value="{{ old('name') }}" name="name"
@@ -20,6 +22,7 @@
                             </p>
                         @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="client_name" class="form-label">NOME CLIENT</label>
                         <input type="text" value="{{ old('client_name') }}" name="client_name"
@@ -31,6 +34,18 @@
                             </p>
                         @enderror
                     </div>
+
+                    <div class="pb-3">
+                        <label for="type" class="form-label">LINGUAGGIO</label>
+                        <select id="type" name='type_id' class="form-select" aria-label="Default select example">
+                            <option value="">Seleziona un linguaggio o framework . . .</option>
+                            @foreach ($types as $type)
+                                <option @if ($type->id == old('type_id')) selected @endif value="{{ $type->id }}">
+                                    {{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
 
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 w-75">
@@ -59,10 +74,12 @@
                             </p>
                         @enderror
                     </div>
+
                     <div class="links d-flex justify-content-center pt-2">
                         <a class="btn btn-danger" href="{{ route('admin.projects.index') }}">ANNULLA</a>
                         <button type="submit" class="btn btn-success mx-3">AGGIUNGI</button>
                     </div>
+
                 </form>
             </div>
         </div>

@@ -20,7 +20,8 @@
                     @endif
 
                     <div class="card-body">
-                        <h5 class="card-title text-center py-3 fw-bold">{{ $project->name }}</h5>
+                        <h5 class="card-title text-center pt-3 fw-bold">{{ $project->name }}</h5>
+                        <span class="badge text-bg-info d-block mx-auto my-2 w-25">{{ $project->type?->name }}</span>
                         <p class="card-text">{!! $project->summary !!}</p>
                         <div class="d-flex justify-content-center py-3">
                             <a href="{{ route('admin.projects.edit', $project) }}"

@@ -15,7 +15,7 @@ class Project extends Model
         return $this->belongsTo(Type::class);
     }
 
-    protected $fillable = ['name', 'client_name', 'summary', 'cover_image', 'image_original_name', 'slug'];
+    protected $fillable = ['name', 'client_name', 'summary', 'cover_image', 'image_original_name', 'slug', 'type_id'];
 
     public static function generateSlug($string)
     {
