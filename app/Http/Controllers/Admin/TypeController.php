@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TypeController extends Controller
 {
@@ -15,18 +16,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $types = Type::orderBy('id', 'desc')->paginate(5);
         return view('admin.types.index', compact('types'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -37,29 +28,16 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $form_data = $request->validate([
+            'name' => 'required|min:2|unique:types'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $form_data['slug'] = Str::slug($form_data['name']);
+        $name = $form_data['name'];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        Type::create($form_data);
+
+        return redirect()->back()->with('create', "Linguaggio <strong> $name </strong> aggiunto correttamente al DB.");
     }
 
     /**
@@ -69,9 +47,17 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Type $type)
     {
-        //
+        $form_data = $request->validate([
+            'name' => 'required|unique:types|min:2'
+        ]);
+
+        $form_data['slug'] = Str::slug($form_data['name']);
+
+        $type->update($form_data);
+
+        return redirect()->back()->with('update', "Linguaggio <strong>$request->name</strong> aggiornato correttamente.");
     }
 
     /**
@@ -80,8 +66,10 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->back()->with('delete', "Linguaggio <strong>$type->name</strong> eliminato.");
     }
 }

@@ -18,7 +18,7 @@
 
         <p class="mb-5">
             <a class="{{ Route::currentRouteName() === 'admin.types.index' ? 'active' : 'notactive' }}"
-                href="{{ route('admin.types.index') }}">GESTIONE</a>
+                href="{{ route('admin.types.index') }}">GESTISCI</a>
         </p>
 
         <p>

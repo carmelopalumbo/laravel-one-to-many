@@ -5,7 +5,18 @@
         <div class="row">
             @include('admin.partials.aside')
             <div class="col-10">
-                <h3 class="text-center fw-bold py-4">GESTISCI I LINGUAGGI ED I FRAMEWORK PRESENTI NEL DB</h3>
+                @include('admin.types.partials.sessions')
+
+                <form action="{{ route('admin.types.store') }}" method="POST">
+                    @csrf
+                    <div class="input-group mb-3 w-50 m-auto">
+                        <input name="name" type="text" class="form-control"
+                            placeholder="Aggiungi nuovo linguaggio o framework . . . ">
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <i class="fa-solid fa-square-plus"></i>
+                        </button>
+                    </div>
+                </form>
 
                 <table class="table w-50 m-auto mt-5">
                     <thead>
@@ -20,36 +31,20 @@
                         @foreach ($types as $type)
                             <tr>
                                 <th scope="row">{{ $type->id }}</th>
-                                <form action="">
-                                    <td>
-                                        <input class="border-0" type="text" value="{{ $type->name }}">
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-warning">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </button>
-                                    </td>
-                                </form>
-
-                                <form method="POST" action="">
-                                    @csrf
-                                    @method('DELETE')
-                                    <td>
-                                        <button class="btn btn-danger" type="submit"><i
-                                                class="fa-solid fa-trash"></i></button>
-                                    </td>
-                                </form>
-
+                                @include('admin.types.partials.update-form')
+                                @include('admin.types.partials.delete-form')
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-
+                <div class="pt-3 d-flex justify-content-center pag-box">
+                    {{ $types->links() }}
+                </div>
             </div>
         </div>
     </div>
 @endsection
 
 @section('title')
-    Progetti
+    Gestisci Linguaggi
 @endsection

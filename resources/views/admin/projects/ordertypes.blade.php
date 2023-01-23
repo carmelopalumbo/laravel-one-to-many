@@ -27,5 +27,5 @@
 @endsection
 
 @section('title')
-    Progetti
+    Linguaggi
 @endsection
