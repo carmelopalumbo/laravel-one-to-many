@@ -12,10 +12,15 @@
                 <p class="text-center fw-light">Oggi è il <strong>{{ date('d-m-y') }}</strong></p>
                 <p class="text-center fw-light pe-3">Ora attuale: <strong id="clock"></strong></p>
 
-                <div class="info-cards pt-5 d-flex justify-content-center mx-3">
+                <div class="info-cards w-50 pt-5 d-flex justify-content-between m-auto">
                     <div class="cp-card">
                         <h3>PROGETTI ATTUALMENTE NEL DB</h3>
                         <p>{{ $projects }}</p>
+                    </div>
+
+                    <div class="cp-card">
+                        <h3>LINGUAGGI E FRAMEWORK SALVATI NEL DB</h3>
+                        <p>{{ $types }}</p>
                     </div>
                 </div>
 
