@@ -28,7 +28,7 @@
 </head>
 
 <body onload="startTime()">
-    <div id="app">
+    <div id="app" class="admin">
         @include('admin.partials.header')
         <main>
             @yield('content')
