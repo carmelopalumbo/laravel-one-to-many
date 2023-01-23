@@ -28,7 +28,9 @@
                     <tbody>
                         @forelse ($my_projects as $project)
                             <tr>
-                                <td>{{ $project->name }}</td>
+                                <td>{{ $project->name }} <span
+                                        class="badge text-bg-dark ms-2">{{ $project->type->name }}</span>
+                                </td>
                                 <td>{{ $project->client_name }}</td>
                                 <td>
                                     <a class="btn btn-info" href="{{ route('admin.projects.show', $project) }}"><i
