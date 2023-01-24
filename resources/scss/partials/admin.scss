@@ -204,7 +204,7 @@
 
     .type-box{
         height: 300px;
-        width: 300px;
+        width: calc(100% / 4);
         border: 2px solid #C52133;
         border-radius: 5px;
         overflow-y: auto;
